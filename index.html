@@ -1,51 +1,74 @@
-export default async function handler(req, res) {
-    // Allow requests from your website
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-    // Handle browser preflight request
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
-    }
-
-    // Only accept POST requests
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
-
-    try {
-        const { email } = req.body;
-
-        // Check if email is valid
-        if (!email || !email.includes('@')) {
-            return res.status(400).json({ 
-                success: false, 
-                message: 'Please enter a valid email address' 
-            });
-        }
-
-        // Get current time
-        const timestamp = new Date().toISOString();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUMI SUMI - Fashion Intelligence, Redefined</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
         
-        // For now, we'll just log the email (you'll see it in Vercel logs)
-        console.log('New waitlist signup:', email, 'at', timestamp);
-
-        // Send success response
-        res.status(200).json({ 
-            success: true, 
-            message: 'Successfully added to waitlist' 
-        });
-
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Something went wrong' 
-        });
-    }
-}            width: 100%;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #FDF8F5 0%, #F5E6E8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 700px;
+            text-align: center;
+            padding: 100px 80px;
+            background: #f8f3e8;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(135, 2, 21, 0.1);
+        }
+        
+        .title {
+            color: #870215;
+            font-size: 140px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            margin-bottom: 50px;
+            font-family: 'Playfair Display', serif;
+            line-height: 0.8;
+        }
+        
+        .subtitle {
+            color: #5A4A4A;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+            font-style: normal;
+        }
+        
+        .description {
+            color: #7A6A6A;
+            font-size: 20px;
+            margin-bottom: 70px;
+            line-height: 1.5;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            font-style: italic;
+        }
+        
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .email-input {
+            width: 100%;
             max-width: 400px;
             padding: 20px 25px;
             border: 2px solid #F5E6E8;
@@ -136,13 +159,41 @@ export default async function handler(req, res) {
         </form>
     </div>
 
-    <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('input').value;
-            alert('Thank you. ' + email + ' has been added to the Sumi Sumi waitlist.');
+<script>
+async function handleSubmit(event) {
+    event.preventDefault();
+    const email = event.target.querySelector('input').value;
+    const button = event.target.querySelector('button');
+    const originalText = button.textContent;
+    
+    // Show loading state
+    button.textContent = 'Joining...';
+    button.disabled = true;
+    
+    try {
+        const response = await fetch('/api/waitlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: email })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert('Thank you! You have been added to the Sumi Sumi waitlist.');
             event.target.querySelector('input').value = '';
+        } else {
+            alert(result.message || 'Something went wrong. Please try again.');
         }
-    </script>
+    } catch (error) {
+        alert('Network error. Please try again.');
+    } finally {
+        button.textContent = originalText;
+        button.disabled = false;
+    }
+}
+</script>
 </body>
 </html>
