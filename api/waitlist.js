@@ -1,25 +1,43 @@
+// Simple in-memory storage (resets on deployment, but good for testing)
+let waitlistEmails = [];
+
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
 
+    // GET request to view all emails
+    if (req.method === 'GET') {
+        return res.status(200).json({
+            totalEmails: waitlistEmails.length,
+            emails: waitlistEmails,
+            message: 'All waitlist submissions'
+        });
+    }
+
     if (req.method === 'POST') {
         const { email } = req.body || {};
+        const timestamp = new Date().toISOString();
         
-        // Simple logging
-        console.log('=== EMAIL RECEIVED ===');
-        console.log('Email:', email);
-        console.log('Body:', JSON.stringify(req.body));
-        console.log('Method:', req.method);
-        console.log('======================');
+        if (!email || !email.includes('@')) {
+            return res.status(400).json({ success: false, message: 'Valid email required' });
+        }
+
+        // Store the email
+        waitlistEmails.push({
+            email: email,
+            timestamp: timestamp
+        });
+        
+        console.log('New email:', email, 'Total:', waitlistEmails.length);
         
         return res.status(200).json({ 
             success: true, 
-            received: email
+            message: 'Successfully added to waitlist'
         });
     }
 
