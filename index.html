@@ -146,25 +146,171 @@
         <p class="subtitle">Fashion intelligence, redefined</p>
         <p class="description">Your personal style companion<br>Loading...</p>
         
-        <<form class="email-form" action="https://docs.google.com/forms/d/e/1FAIpQLScXlF_JLYLANKZ6rv7uCaqgTVRyw7iWK_edBiQQUlwXNMB_3w/formResponse" 
-      method="POST" 
-      target="hidden_iframe" 
-      onsubmit="submitted=true;">
-    <input 
-        type="email" 
-        name="entry.YOUR_ENTRY_ID"
-        class="email-input"
-        placeholder="Enter your email"
-        required
-    >
-    <button type="submit" class="waitlist-btn">
-        Join the waitlist
-    </button>
-</form>
-
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {alert('Thank you! You have been added to the Sumi Sumi waitlist.');}"></iframe>
-
-<script>
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUMI SUMI - Fashion Intelligence, Redefined</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #FDF8F5 0%, #F5E6E8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 700px;
+            text-align: center;
+            padding: 100px 80px;
+            background: #f8f3e8;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(135, 2, 21, 0.1);
+        }
+        
+        .title {
+            color: #870215;
+            font-size: 140px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            margin-bottom: 50px;
+            font-family: 'Playfair Display', serif;
+            line-height: 0.8;
+        }
+        
+        .subtitle {
+            color: #5A4A4A;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+            font-style: normal;
+        }
+        
+        .description {
+            color: #7A6A6A;
+            font-size: 20px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            font-style: italic;
+        }
+        
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .email-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px 25px;
+            border: 2px solid #F5E6E8;
+            border-radius: 50px;
+            background: #FDF8F5;
+            font-size: 16px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            transition: all 0.3s ease;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: #870215;
+            background: white;
+        }
+        
+        .email-input::placeholder {
+            color: #ADADAD;
+        }
+        
+        .waitlist-btn {
+            background: #870215;
+            color: #FFFFFF;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+        }
+        
+        .waitlist-btn:hover {
+            background: #6B0111;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 70px 50px;
+            }
+            
+            .title {
+                font-size: 100px;
+                letter-spacing: 4px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .description {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 50px 30px;
+            }
+            
+            .title {
+                font-size: 80px;
+                letter-spacing: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">SUMI<br>SUMI</h1>
+        <p class="subtitle">Fashion intelligence, redefined</p>
+        <p class="description">Your personal style companion<br>Loading...</p>
+        
+        <form class="email-form" 
+              action="https://formspree.io/f/xnnqbklz" 
+              method="POST">
+            <input 
+                type="email" 
+                name="email"
+                class="email-input"
+                placeholder="Enter your email"
+                required
+            >
+            <button type="submit" class="waitlist-btn">
+                Join the waitlist
+            </button>
+        </form>
+    </div>
+</body>
+</html>
     var submitted = false;
 </script>
     </div>
