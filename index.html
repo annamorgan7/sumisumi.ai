@@ -160,8 +160,6 @@
         </form>
     </div>
 
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
     <script>
         document.getElementById('waitlistForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -174,29 +172,25 @@
             button.textContent = 'Joining...';
             button.disabled = true;
             
-            // Create a hidden form to submit to Google Forms
-            const googleForm = document.createElement('form');
-            googleForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLScXlF_JLYLANKZ6rv7uCaqgTVRyw7iWK_edBiQQUlwXNMB_3w/formResponse';
-            googleForm.method = 'POST';
-            googleForm.target = 'hidden_iframe';
-            
-            // Add the email field with YOUR entry ID
-            const emailField = document.createElement('input');
-            emailField.type = 'hidden';
-            emailField.name = 'entry.1898551540';
-            emailField.value = email;
-            
-            googleForm.appendChild(emailField);
-            document.body.appendChild(googleForm);
-            googleForm.submit();
-            
-            // Show success message after brief delay
-            setTimeout(function() {
+            // Send to Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbxyK3vvpuG3RxtT_lmn5TOC4GFOl7ha7R-YYAns4Tl-4zD4N8XWeGE_Mtsfwc5N9K4/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email })
+            }).then(() => {
+                // Show success message
                 alert('Thank you! You have been added to the Sumi Sumi waitlist.');
                 document.getElementById('emailInput').value = '';
                 button.textContent = originalText;
                 button.disabled = false;
-            }, 1000);
+            }).catch(err => {
+                alert('Something went wrong. Please try again.');
+                button.textContent = originalText;
+                button.disabled = false;
+            });
         });
     </script>
 </body>
