@@ -146,12 +146,10 @@
         <p class="subtitle">Fashion intelligence, redefined</p>
         <p class="description">Your personal style companion<br>Loading...</p>
         
-        <form class="email-form" 
-              action="https://formspree.io/f/xnnqbklz" 
-              method="POST">
+        <form class="email-form" id="waitlistForm">
             <input 
                 type="email" 
-                name="email"
+                id="emailInput"
                 class="email-input"
                 placeholder="Enter your email"
                 required
@@ -161,5 +159,45 @@
             </button>
         </form>
     </div>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+    <script>
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('emailInput').value;
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            
+            // Show loading state
+            button.textContent = 'Joining...';
+            button.disabled = true;
+            
+            // Create a hidden form to submit to Google Forms
+            const googleForm = document.createElement('form');
+            googleForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLScXlF_JLYLANKZ6rv7uCaqgTVRyw7iWK_edBiQQUlwXNMB_3w/formResponse';
+            googleForm.method = 'POST';
+            googleForm.target = 'hidden_iframe';
+            
+            // Get the entry ID from your Google Form
+            const emailField = document.createElement('input');
+            emailField.type = 'hidden';
+            emailField.name = 'entry.1045800193'; // This is a placeholder - we need to get your real entry ID
+            emailField.value = email;
+            
+            googleForm.appendChild(emailField);
+            document.body.appendChild(googleForm);
+            googleForm.submit();
+            
+            // Show success message after brief delay
+            setTimeout(function() {
+                alert('Thank you! You have been added to the Sumi Sumi waitlist.');
+                document.getElementById('emailInput').value = '';
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
