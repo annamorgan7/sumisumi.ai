@@ -168,12 +168,10 @@
             const button = this.querySelector('button');
             const originalText = button.textContent;
             
-            // Show loading state
             button.textContent = 'Joining...';
             button.disabled = true;
             
-            // Send to Google Apps Script
-            fetch('https://script.google.com/macros/s/AKfycbzLRdiUgPAsBRlEJV1mckKJElVjpNFoPooqrDLT8_ptlSfJ78po64oWXTqgGgamIewm/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbw7DW36a56vwbvpv4wjECY67sdY2pAfUlowdSqWYZd2JdBZ01hjd0rmHXaxP7PaNZsB/exec', {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
@@ -181,7 +179,6 @@
                 },
                 body: JSON.stringify({ email: email })
             }).then(() => {
-                // Show success message
                 alert('Thank you! You have been added to the Sumi Sumi waitlist.');
                 document.getElementById('emailInput').value = '';
                 button.textContent = originalText;
