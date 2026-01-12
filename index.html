@@ -23,16 +23,16 @@
         }
         
         .container {
-            max-width: 700px;
+            max-width: 550px;
             text-align: center;
-            padding: 100px 80px;
+            padding: 80px 60px;
             background: #f8f3e8;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(135, 2, 21, 0.1);
         }
         
         .logo-container {
-            margin-bottom: 50px;
+            margin-bottom: 35px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -40,7 +40,7 @@
         
         .logo {
             width: 100%;
-            max-width: 500px;
+            max-width: 400px;
             height: auto;
             transition: transform 0.3s ease;
         }
@@ -51,17 +51,17 @@
         
         .subtitle {
             color: #5A4A4A;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: 1px;
             font-style: normal;
         }
         
         .description {
             color: #7A6A6A;
-            font-size: 20px;
-            margin-bottom: 40px;
+            font-size: 18px;
+            margin-bottom: 35px;
             line-height: 1.5;
             font-weight: 400;
             letter-spacing: 0.3px;
@@ -71,18 +71,18 @@
         .email-form {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
             align-items: center;
         }
         
         .email-input {
             width: 100%;
-            max-width: 400px;
-            padding: 20px 25px;
+            max-width: 350px;
+            padding: 18px 25px;
             border: 2px solid #F5E6E8;
             border-radius: 50px;
             background: #FDF8F5;
-            font-size: 16px;
+            font-size: 15px;
             text-align: center;
             font-family: 'Playfair Display', serif;
             transition: all 0.3s ease;
@@ -101,10 +101,10 @@
         .waitlist-btn {
             background: #870215;
             color: #FFFFFF;
-            padding: 20px 50px;
+            padding: 18px 45px;
             border: none;
             border-radius: 50px;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Playfair Display', serif;
@@ -130,49 +130,62 @@
         @media (max-width: 768px) {
             .container {
                 margin: 20px;
-                padding: 70px 50px;
+                padding: 60px 40px;
+                max-width: 500px;
             }
             
             .logo {
-                max-width: 350px;
+                max-width: 320px;
+            }
+            
+            .logo-container {
+                margin-bottom: 30px;
             }
             
             .subtitle {
                 font-size: 18px;
-                margin-bottom: 18px;
+                margin-bottom: 12px;
             }
             
             .description {
                 font-size: 16px;
+                margin-bottom: 30px;
             }
         }
         
         @media (max-width: 480px) {
             .container {
                 padding: 50px 30px;
+                max-width: 400px;
             }
             
             .logo {
-                max-width: 250px;
+                max-width: 260px;
+            }
+            
+            .logo-container {
+                margin-bottom: 25px;
             }
             
             .subtitle {
                 font-size: 16px;
-                margin-bottom: 15px;
+                margin-bottom: 10px;
             }
             
             .description {
                 font-size: 14px;
+                margin-bottom: 28px;
             }
             
             .email-input {
                 font-size: 14px;
-                padding: 18px 20px;
+                padding: 16px 20px;
+                max-width: 300px;
             }
             
             .waitlist-btn {
                 font-size: 14px;
-                padding: 18px 40px;
+                padding: 16px 38px;
             }
         }
     </style>
