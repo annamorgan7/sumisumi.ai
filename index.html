@@ -25,20 +25,28 @@
         .container {
             max-width: 700px;
             text-align: center;
-            padding: 100px 80px;
+            padding: 80px 80px;
             background: #f8f3e8;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(135, 2, 21, 0.1);
         }
         
-        .title {
-            color: #870215;
-            font-size: 140px;
-            font-weight: 700;
-            letter-spacing: 6px;
-            margin-bottom: 50px;
-            font-family: 'Playfair Display', serif;
-            line-height: 0.8;
+        .logo-container {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
         }
         
         .subtitle {
@@ -106,17 +114,27 @@
         .waitlist-btn:hover {
             background: #6B0111;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(135, 2, 21, 0.3);
+        }
+        
+        .waitlist-btn:active {
+            transform: translateY(0);
+        }
+        
+        .waitlist-btn:disabled {
+            background: #ADADAD;
+            cursor: not-allowed;
+            transform: none;
         }
         
         @media (max-width: 768px) {
             .container {
                 margin: 20px;
-                padding: 70px 50px;
+                padding: 60px 40px;
             }
             
-            .title {
-                font-size: 100px;
-                letter-spacing: 4px;
+            .logo {
+                max-width: 300px;
             }
             
             .subtitle {
@@ -133,16 +151,35 @@
                 padding: 50px 30px;
             }
             
-            .title {
-                font-size: 80px;
-                letter-spacing: 3px;
+            .logo {
+                max-width: 250px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .description {
+                font-size: 14px;
+            }
+            
+            .email-input {
+                font-size: 14px;
+                padding: 18px 20px;
+            }
+            
+            .waitlist-btn {
+                font-size: 14px;
+                padding: 18px 40px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">SUMI<br>SUMI</h1>
+        <div class="logo-container">
+            <img src="Sumi_Sumi_Logo_Inverse.png" alt="SUMI SUMI" class="logo">
+        </div>
         <p class="subtitle">Fashion intelligence, redefined</p>
         <p class="description">Your personal style companion<br>Loading...</p>
         
